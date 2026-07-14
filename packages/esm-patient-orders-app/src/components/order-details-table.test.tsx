@@ -596,7 +596,7 @@ describe('OrderDetailsTable', () => {
       error: undefined,
       isLoading: false,
       isValidating: false,
-      mutate: jest.fn(),
+      mutate: vi.fn(),
     });
 
     renderOrderDetailsTable();
@@ -604,7 +604,9 @@ describe('OrderDetailsTable', () => {
     await screen.findByRole('table');
     await user.click(screen.getByRole('button', { name: /options/i }));
 
+    // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByText(/modify order/i).closest('button')).toBeDisabled();
+    // eslint-disable-next-line testing-library/no-node-access
     expect(screen.getByText(/cancel order/i).closest('button')).toBeDisabled();
   });
 });
